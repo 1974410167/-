@@ -34,7 +34,7 @@ email_dict = {"78630888":"1047537127@qq.com",'78630822':'1974410167@qq.com'}
 
 def is_true_time():
     l = time.localtime(time.time()).tm_hour
-    if l >= 8 or l <= 22:
+    if l >= 8 and l <= 22:
         return True
 
 class control_thread():
@@ -109,15 +109,25 @@ if __name__ == "__main__":
 
     is_running = False
 
+    n = 1
     while True:
         # 如果程序在可以运行的时间没有运行，那么运行程序，并把运行标志设置为True
         if not is_running and is_true_time():
+
+            s = send_email("1974410167@qq.com",'签到系统已启动')
+            s.send()
             main_1()
             is_running = True
+            n = 1
 
         # 如果程序不在可以运行的时间，那么明显线程已经中断，把is_running设置为False
         if not is_true_time():
             is_running = False
+
+            while n:
+                s = send_email("1974410167@qq.com",f'签到系统已关闭。is_running:{is_running},is_true_time:{is_true_time()}')
+                s.send()
+                n = n-1
 
         time.sleep(30)
 
