@@ -10,7 +10,7 @@ class send_email():
         self.message_1 = message_1
 
         self.form_addr = "1974410167@qq.com"
-        self.password = "ejdfbhvgwurbdicg"
+        self.password = ""
         self.smtp_server = 'smtp.qq.com'
 
     def message(self):
