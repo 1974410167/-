@@ -72,7 +72,9 @@ class control_thread():
                         TT = self.ins.sign(active_list.pop(0), uid,name)
                         if TT == True:
                             to_address = email_dict[uid]
-                            send_email(to_address,name)
+                            message = f'{name}-{teacherfactor}--已为你签到...{datetime.now()}'
+                            s = send_email(to_address,message)
+                            s.send()
                             print("success sign!")
                     else:
                         continue
@@ -108,7 +110,6 @@ if __name__ == "__main__":
     is_running = False
 
     while True:
-
         # 如果程序在可以运行的时间没有运行，那么运行程序，并把运行标志设置为True
         if not is_running and is_true_time():
             main_1()
