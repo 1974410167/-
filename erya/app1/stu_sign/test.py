@@ -4,62 +4,17 @@ cookie = 'k8s=4a6b32f2e078d402a73dc603ff4d196585351bb4; route=f9c314690d8e5d436e
 import os
 
 input("键入任何值结束....")
-# import re
-# from threading import Event
-# import threading
-# import time
-#
-# dict = '{"name":"S"}'
-#
-# print(type(eval(dict)))
-# signal = Event()
-# signal._flag = True
-#
-# def a1():
-#
-#     while True:
-#         l = time.localtime(time.time()).tm_hour
-#         if l>8 and l<22:
-#             signal.clear()
-#         else:
-#             signal.set()
-#         time.sleep(60)
-#
-# def b1():
-#
-#     while True:
-#
-#         signal.wait()
-#         time.sleep(60)
-#         print('ssss')
-#
-# t = threading.Thread(target=a1,args=())
-# t1 = threading.Thread(target=b1,args=())
-# t.start()
-# t1.start()
-#
-# print('end')
 
 
+class a():
 
+    def b(self):
+        print('b')
 
+    def c(self):
+        self.b()
+        print('c')
 
-
-
-
-
-
-
-
-# activeId: 318589781
-# classId: 34337550
-# fid: 4311
-# courseId: 215462815
-#
-# courseId: 215462815
-# classId: 34337550
-# activeId: 318591940
-#
-# puid 78630822
-# 318594903
-
+s = a()
+s.c()
+17630849597
