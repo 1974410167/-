@@ -7,11 +7,11 @@
 
     <main>
 
-        <div class="container" style="margin-top: 150px;margin-left: 500px">
+        <div class="container-fluid">
 
-                <div class="row" >
+                <div class="container" style="margin-top: 5em">
 
-                    <div class="col-10">
+                    <div class="row-cols-9">
 
                         <form action="{% url 'app1:register_url' %}" method="post">
                             {% csrf_token %}
@@ -22,11 +22,11 @@
                             <h2>注册</h2>
 
                             <input class="form-control form-control-lg" type="text" placeholder="学习通账号" name="account" required>
-                            <small id="passwordHelpInline" class="text-muted">必填项,请用填写尔雅登录的手机号</small>
+                            <small class="text-muted">必填项,请用填写尔雅登录的手机号</small>
                             <input class="form-control form-control-lg" type="password" placeholder="学习通密码" name="password" required>
-                            <small id="passwordHelpInline" class="text-muted">必填项</small>
+                            <small class="text-muted">必填项</small>
                             <input class="form-control form-control-lg" type="email" placeholder="你的邮箱" name="email" required>
-                            <small id="passwordHelpInline" class="text-muted">此邮箱用于向你发送通知</small>
+                            <small class="text-muted">此邮箱用于向你发送通知</small>
                             <br>
                             <button type="submit" class="btn btn-primary mb-2">--提交--</button>
                         </form>

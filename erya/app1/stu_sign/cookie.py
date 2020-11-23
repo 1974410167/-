@@ -26,11 +26,8 @@ class generate_Cookies():
         """
         try:
             with open(file_path,encoding='utf-8') as f:
-                print('ssssssssss')
                 ctx = execjs.compile(f.read())
-                print('qqqqqqqqqqqqq')
                 self.password = ctx.call("getPwd", self.password)
-                print(self.password)
         except:
             print("密码加密失败")
 
@@ -62,9 +59,4 @@ class generate_Cookies():
 
         except Exception as e:
             print(e)
-
-
-s = generate_Cookies('15738698290','wsghy.5637')
-m = s.get_cookies()
-print(m)
 

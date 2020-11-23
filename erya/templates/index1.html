@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <script crossorigin="anonymous" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" src="https://lib.baomitu.com/jquery/3.5.1/jquery.min.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    .switch-btn {
+  cursor: pointer;
+  width: 45px;
+  height: 28px;
+  position: relative;
+  border: 1px solid #dfdfdf;
+  background-color: #fdfdfd;
+  box-shadow: #dfdfdf 0 0 0 0 inset;
+  border-radius: 15px;
+  background-clip: content-box;
+  display: inline-block;
+  -webkit-appearance: none;
+  user-select: none;
+  outline: none; 
+}
+.switch-btn:before {
+    content: '';
+    width: 25px;
+    height: 25px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    border-radius: 20px;
+    background-color: #fff;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, .4); 
+}
+.switch-btn:checked {
+    border-color: #56b0d4;
+    box-shadow: #56b0d4 0 0 0 16px inset;
+    background-color: #56b0d4; 
+}
+.switch-btn:checked:before {
+    left: 18px; 
+}
+.switch-btn.switch-btn-animbg {
+    transition: background-color ease .4s; 
+}
+.switch-btn.switch-btn-animbg:before {
+    transition: left .3s; 
+}
+.switch-btn.switch-btn-animbg:checked {
+    box-shadow: #dfdfdf 0 0 0 0 inset;
+    background-color: #56b0d4;
+    transition: border-color .4s, background-color ease .4s; 
+}
+.switch-btn.switch-btn-animbg:checked:before {
+    transition: left .3s; 
+}
+</style>
+
+<body>
+    <input id = "Demo"class="switch-btn switch-btn-animbg" type="checkbox" checked>
+</body>
+<script>
+	  $('#Demo').click(function () {
+ 
+        if ($('#Demo').prop('checked') == true) {
+            $("[all='1']").prop('checked', true);
+            alert(1);
+        } else {
+            $("[all='1']").prop('checked', false);
+            alert(2);
+        }
+ 
+    })
+</script>
+</html>

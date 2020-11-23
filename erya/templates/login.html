@@ -7,11 +7,12 @@
 
     <main>
 
-        <div class="container" style="margin-top: 150px;margin-left: 500px">
+        <div class="container-fluid">
 
-                <div class="row" >
+                <div class="container" style="margin-top: 5em">
 
-                    <div class="col-10">
+                    <div class="row-cols-9">
+
                         <form action="{% url 'app1:login_url' %}" method="post">
 
                             {% csrf_token %}
@@ -21,12 +22,12 @@
                             {% endif %}
                             <h2>登录</h2>
                             <input class="form-control form-control-lg" type="text" placeholder="学习通账号" name="account">
-                            <small id="passwordHelpInline" class="text-muted">必填项，手机号登录</small>
+                            <small class="text-muted">必填项，手机号登录</small>
                             <input class="form-control form-control-lg" type="password" placeholder="学习通密码" name="password">
-                            <small id="passwordHelpInline" class="text-muted">必填项</small>
-
+                            <small class="text-muted">必填项</small>
                             <br>
                             <button type="submit" class="btn btn-primary mb-2">--登录--</button>
+
                         </form>
                     </div>
 

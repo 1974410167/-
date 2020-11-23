@@ -1,0 +1,86 @@
+{% extends "base.html" %}
+
+{% block title %}个人中心{% endblock %}
+
+{% block main %}
+
+
+    <main>
+        <div class="container-fluid">
+            <div class="container" style="margin-top: 5em" >
+                <h1>课程列表</h1>
+                <ul class="list-group list-group-flush" id="wrap" >
+
+                    {% for course in course_message_list %}
+
+                    <div class="container-fluid" style="margin-top: 1em;" >
+                        <div class="row">
+
+                            <div class="col" >
+                                <ul class="list-group-item" style="background-color: #6ECCC4">{{ course.coursename }}{{ teacherfactor }}</ul>
+                            </div>
+
+                            <div>
+                                {% if course.courseid in course_id_list %}
+
+                                    <input type="checkbox" style="zoom:180%;" checked value="{{ course.courseid }}" data-str11="{{ course.coursename }}" data-acc="{{ account }}">
+
+                                {% else %}
+                                    <input type="checkbox" style="zoom:180%;" value="{{ course.courseid }}" data-str11="{{ course.coursename }}" data-acc="{{ account }}">
+
+
+                                {% endif %}
+                            </div>
+
+                        </div>
+                    </div>
+
+                    {% endfor %}
+
+                </ul>
+            </div>
+        </div>
+    </main>
+{% csrf_token %}
+
+<script>
+
+
+    const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value;
+
+
+    var bu = document.getElementById("wrap").getElementsByTagName('input')
+    // console.log(bu)
+    for (let i=bu.length-1;i>=0;i--){
+        bu[i].onclick = function (){
+            if(bu[i].checked){
+
+                let courseid = bu[i].value;
+                let coursename = bu[i].dataset.str11;
+                let acc = bu[i].dataset.acc;
+                let s = coursename+'已勾选！'
+                alert(s)
+                let ajax = new XMLHttpRequest();
+                ajax.open('POST','http://127.0.0.1:1025/handle/',true);
+		        ajax.setRequestHeader("content-type","application/x-www-form-urlencoded");
+    		    ajax.setRequestHeader('X-CSRFToken', csrftoken);
+                ajax.send("courseid="+courseid+'&status_code=1&account='+acc);
+
+            }
+            else {
+                let courseid = bu[i].value;
+                let ajax = new XMLHttpRequest();
+                ajax.open('POST','http://127.0.0.1:1025/handle/',true);
+		        // ajax.setRequestHeader("content-type","application/x-www-form-urlencoded");
+                ajax.send("courseid="+courseid+'&status_code=0');
+
+            }
+        }
+    }
+
+
+</script>
+
+{% endblock %}
+
+

@@ -61,9 +61,7 @@ class util_1():
 
             url="https://mobilelearn.chaoxing.com/ppt/activeAPI/taskactivelist?courseId="+str(courseId)+"&classId="+str(classId)+"&uid="+uid
             r = requests.get(url,headers=self.headers,cookies=self.cookies)
-            # print(r.text)
             course_dict = r.json()
-            # print(course_dict)
             for item in course_dict["activeList"][1:]:
                 if item['status'] == 1 and item["activeType"]==2:
                     str_url = item["url"]
@@ -107,5 +105,5 @@ class util_1():
 
 
 
-
+s = util_1()
 

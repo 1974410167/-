@@ -55,12 +55,10 @@ class control_thread():
             # 当signed达到1000，清空，访问占用内存过大
             if len(signed)>=1000:
                 signed = []
-
             # 程序随机睡5-20秒，防止访问过快
             m = random.randint(5, 20)
             time.sleep(m)
             if courseid and classid:
-                print(f'{name}--{teacherfactor}--{datetime.now()}--{m}')
                 active_list = self.ins.taskactivatelist(courseid, classid, uid)
                 if active_list:
                     if active_list[0] not in signed:
@@ -69,10 +67,6 @@ class control_thread():
                         time.sleep(15)
                         TT = self.ins.sign(active_list.pop(0), uid,name)
                         if TT == True:
-                            to_address = email_dict[uid]
-                            message = f'{name}-{teacherfactor}--已为你签到...{datetime.now()}'
-                            s = send_email(to_address,message)
-                            s.send()
                             print("success sign!")
                     else:
                         continue
