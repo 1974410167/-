@@ -68,11 +68,17 @@
 
             }
             else {
+
                 let courseid = bu[i].value;
+                let coursename = bu[i].dataset.str11;
+                let acc = bu[i].dataset.acc;
+                let s = coursename+'已取消！'
+                alert(s)
                 let ajax = new XMLHttpRequest();
                 ajax.open('POST','http://127.0.0.1:1025/handle/',true);
-		        // ajax.setRequestHeader("content-type","application/x-www-form-urlencoded");
-                ajax.send("courseid="+courseid+'&status_code=0');
+		        ajax.setRequestHeader("content-type","application/x-www-form-urlencoded");
+    		    ajax.setRequestHeader('X-CSRFToken', csrftoken);
+                ajax.send("courseid="+courseid+'&status_code=0&account='+acc);
 
             }
         }

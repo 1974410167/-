@@ -1,16 +1,11 @@
 from django.shortcuts import render,reverse,redirect
 from django.http import HttpResponse
 from django.views import View
-from django.utils.decorators import method_decorator
-from django.views.decorators.csrf import ensure_csrf_cookie,csrf_exempt
-
 from .models import User,CourseMessage
 
 from .stu_sign.cookie import generate_Cookies
 from .stu_sign.util import util_1
 from .stu_sign.main import get_headers
-
-
 
 
 def index(request):
@@ -81,6 +76,9 @@ class register(View):
         # 以是否生成指定cookie判断是否登录成功
         if cookies:
 
+
+
+
             obj_uid = util_1()
             obj_uid.headers = get_headers()
             obj_uid.cookies = cookies
@@ -147,13 +145,12 @@ class personal_center(View):
             else:
                 message = '你的账号不存在，请注册'
                 return render(request,"register.html",{'message':message})
-            print(course_id_list)
+
             context = {
                 "course_message_list": course_message_list,
                 "course_id_list": course_id_list,
                 'account':account
             }
-            print(context)
 
             return render(request,'person_center.html',context=context)
         else:
@@ -180,33 +177,26 @@ class handle(View):
         courseid = request.POST.get('courseid')
 
         query_user = User.objects.filter(account=account)
-        print(query_user)
-        print(courseid)
         # 存数据
         if status_code == "1":
-            print('bbb')
             if query_user:
-                print('ccc')
                 user_dict = query_user[0].is_activates
-                print(user_dict)
-                print(type(user_dict))
 
                 uid = query_user[0].uid
-
-                user_dict['uid'] = uid
                 course = query_user[0].course_message.filter(courseid=courseid)
+
                 if course:
                     classid = course[0].classid
                     teacherfactor = course[0].teacherfactor
                     coursename = course[0].coursename
 
                     user_dict[courseid] = {
+                        'uid':uid,
                         'courseid': courseid,
                         'classid': classid,
                         'teacherfactor': teacherfactor,
                         'coursename': coursename,
                     }
-                    print(user_dict)
 
                     query_user[0].save()
 
@@ -224,9 +214,11 @@ class handle(View):
 
                 user_dict.pop(courseid)
                 query_user[0].save()
+
                 res = HttpResponse()
                 res.status_code = 200
                 return res
+
             return render(request,'login.html')
 
 

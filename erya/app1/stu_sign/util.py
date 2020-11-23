@@ -3,6 +3,8 @@ import re
 
 headers = ''
 cookies = ''
+# import sys
+# print(sys.path)
 
 class util_1():
 
@@ -20,8 +22,11 @@ class util_1():
 
         try:
             r = requests.get(my_scource_url,headers=self.headers,cookies=self.cookies)
+            print(r.text)
+
             r.encoding='utf-8'
             scource_dict = r.json()
+
             message_list = []
 
             # 遍历所有课程，把所有课程都加入到list
@@ -62,7 +67,7 @@ class util_1():
             url="https://mobilelearn.chaoxing.com/ppt/activeAPI/taskactivelist?courseId="+str(courseId)+"&classId="+str(classId)+"&uid="+uid
             r = requests.get(url,headers=self.headers,cookies=self.cookies)
             course_dict = r.json()
-            for item in course_dict["activeList"][1:]:
+            for item in course_dict["activeList"]:
                 if item['status'] == 1 and item["activeType"]==2:
                     str_url = item["url"]
 
@@ -104,6 +109,4 @@ class util_1():
             return True
 
 
-
-s = util_1()
 
